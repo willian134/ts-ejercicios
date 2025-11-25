@@ -1,0 +1,21 @@
+{
+  "name": "ts-ejercicios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ejercicio1":"ts-node src/Ejercicio1/ejercicio1.ts",
+    "ejercicio2":"ts-node src/Ejercicio2/ejercicio2.ts",
+    "deberr1" : "ts-node src/deber1/deberr1.ts",
+    "deberes2" : "ts-node src/deber2/deberes2.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
