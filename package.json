@@ -8,7 +8,9 @@
     "ejercicio1":"ts-node src/Ejercicio1/ejercicio1.ts",
     "ejercicio2":"ts-node src/Ejercicio2/ejercicio2.ts",
     "deberr1" : "ts-node src/deber1/deberr1.ts",
-    "deberes2" : "ts-node src/deber2/deberes2.ts"
+    "deberes2" : "ts-node src/deber2/deberes2.ts",
+    "ejercicios1" : "ts-node src/DEBEREJRCICIOS/ejercicios1.ts",
+    "ejercicios2" : "ts-node src/DEBEREJRCICIOS/ejercicios2.ts"
   },
   "keywords": [],
   "author": "",
