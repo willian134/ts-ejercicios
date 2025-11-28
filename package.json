@@ -10,7 +10,11 @@
     "deberr1" : "ts-node src/deber1/deberr1.ts",
     "deberes2" : "ts-node src/deber2/deberes2.ts",
     "ejercicios1" : "ts-node src/DEBEREJRCICIOS/ejercicios1.ts",
-    "ejercicios2" : "ts-node src/DEBEREJRCICIOS/ejercicios2.ts"
+    "ejercicios2" : "ts-node src/DEBEREJRCICIOS/ejercicios2.ts",
+    "ejercicios3" : "ts-node src/DEBEREJRCICIOS/ejercicios3.ts",
+    "ejercicios4" : "ts-node src/DEBEREJRCICIOS/ejercicios4.ts",
+    "ejercicios5" : "ts-node src/DEBEREJRCICIOS/ejercicios5.ts"
+
   },
   "keywords": [],
   "author": "",
