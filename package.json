@@ -13,7 +13,9 @@
     "ejercicios2" : "ts-node src/DEBEREJRCICIOS/ejercicios2.ts",
     "ejercicios3" : "ts-node src/DEBEREJRCICIOS/ejercicios3.ts",
     "ejercicios4" : "ts-node src/DEBEREJRCICIOS/ejercicios4.ts",
-    "ejercicios5" : "ts-node src/DEBEREJRCICIOS/ejercicios5.ts"
+    "ejercicios5" : "ts-node src/DEBEREJRCICIOS/ejercicios5.ts",
+    "deber12" : "ts-node src/debeeee/deber12.ts"
+  
 
   },
   "keywords": [],
@@ -25,3 +27,4 @@
     "typescript": "^5.9.3"
   }
 }
+  
