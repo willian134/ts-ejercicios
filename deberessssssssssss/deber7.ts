@@ -111,7 +111,7 @@ class SistemaEstudiantes {
 }
 
 function mostrarMenu(): void {
-    console.log("\n📚 SISTEMA DE ESTUDIANTES");
+    console.log("SISTEMA DE ESTUDIANTES");
     console.log("1. Agregar estudiantes");
     console.log("2. Listar estudiantes");
     console.log("3. Buscar estudiante");
