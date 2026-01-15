@@ -123,7 +123,7 @@ function mostrarMenu(): void {
 
 function ejecutarDemo(sistema: SistemaEstudiantes): void {
 
-    console.log("\n--- DEMO DEL SISTEMA ---");
+    console.log(" DEMO DEL SISTEMA -");
 
     // Agregar 3 estudiantes
     sistema.agregar(new Estudiante(1, "Ana", 20, "Sistemas", true, 8.5));
@@ -131,11 +131,11 @@ function ejecutarDemo(sistema: SistemaEstudiantes): void {
     sistema.agregar(new Estudiante(3, "Carlos", 19, "Contabilidad", true, 9.0));
 
     // Listar todos
-    console.log("\n📋 Lista de estudiantes:");
+    console.log("Lista de estudiantes:");
     console.log(sistema.listar());
 
     // Buscar por ID
-    console.log("\n🔍 Buscar estudiante ID 2:");
+    console.log(" Buscar estudiante ID 2:");
     console.log(sistema.buscarPorId(2));
 
     // Actualizar promedio
