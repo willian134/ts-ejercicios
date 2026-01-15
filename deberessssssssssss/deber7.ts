@@ -13,9 +13,6 @@ interface IResultado<T> {
     data?: T;
 }
 
-// =====================
-// 2. CLASE ESTUDIANTE
-// =====================
 
 class Estudiante implements IEstudiante {
     constructor(
@@ -27,10 +24,6 @@ class Estudiante implements IEstudiante {
         public promedio: number
     ) {}
 }
-
-// =====================
-// 3. SISTEMA DE GESTIÓN
-// =====================
 
 class SistemaEstudiantes {
 
@@ -117,10 +110,6 @@ class SistemaEstudiantes {
     }
 }
 
-// =====================
-// 4. FUNCIONES
-// =====================
-
 function mostrarMenu(): void {
     console.log("\n📚 SISTEMA DE ESTUDIANTES");
     console.log("1. Agregar estudiantes");
@@ -150,25 +139,21 @@ function ejecutarDemo(sistema: SistemaEstudiantes): void {
     console.log(sistema.buscarPorId(2));
 
     // Actualizar promedio
-    console.log("\n✏️ Actualizar promedio de ID 1:");
+    console.log(" Actualizar promedio de ID 1:");
     console.log(sistema.actualizarPromedio(1, 9.5));
 
     // Cambiar estado
-    console.log("\n🚫 Cambiar estado de ID 3 a inactivo:");
+    console.log(" Cambiar estado de ID 3 a inactivo:");
     console.log(sistema.cambiarEstado(3, false));
 
     // Listar activos
-    console.log("\n✅ Estudiantes activos:");
+    console.log("Estudiantes activos:");
     console.log(sistema.listarActivos());
 
     // Promedio general
-    console.log("\n📊 Promedio general del curso:");
+    console.log(" Promedio general del curso:");
     console.log(sistema.promedioGeneral().toFixed(2));
 }
-
-// =====================
-// 5. EJECUCIÓN
-// =====================
 
 mostrarMenu();
 
