@@ -1,161 +1,242 @@
+//correcciondel trabajp del mini sistema
+
+const readline = require("readline");
+
+
+
 interface IEstudiante {
-    id: number;
-    nombre: string;
-    edad: number;
-    carrera: string;
-    activo: boolean;
-    promedio: number;
+  id: number;
+  nombre: string;
+  edad: number;
+  carrera: string;
+  activo: boolean;
+  promedio: number;
 }
 
 interface IResultado<T> {
-    ok: boolean;
-    mensaje: string;
-    data?: T;
+  ok: boolean;
+  mensaje: string;
+  data?: T;
 }
 
 
 class Estudiante implements IEstudiante {
-    constructor(
-        public id: number,
-        public nombre: string,
-        public edad: number,
-        public carrera: string,
-        public activo: boolean,
-        public promedio: number
-    ) {}
+  public id: number;
+  public nombre: string;
+  public edad: number;
+  public carrera: string;
+  public activo: boolean;
+  public promedio: number;
+
+  constructor(
+    id: number,
+    nombre: string,
+    edad: number,
+    carrera: string,
+    activo: boolean,
+    promedio: number
+  ) {
+    this.id = id;
+    this.nombre = nombre;
+    this.edad = edad;
+    this.carrera = carrera;
+    this.activo = activo;
+    this.promedio = promedio;
+  }
+
+  mostrar(): void {
+    console.log(
+      `ID: ${this.id} | ${this.nombre} | Edad: ${this.edad} | Carrera: ${this.carrera} | Promedio: ${this.promedio} | Activo: ${this.activo}`
+    );
+  }
 }
 
+
 class SistemaEstudiantes {
+  private estudiantes: Estudiante[] = [];
 
-    private estudiantes: Estudiante[] = [];
-
-    agregar(est: Estudiante): IResultado<Estudiante> {
-
-        // Validar ID repetido
-        for (let e of this.estudiantes) {
-            if (e.id === est.id) {
-                return { ok: false, mensaje: "ID ya registrado" };
-            }
-        }
-
-        // Validar edad
-        if (est.edad < 15 || est.edad > 80) {
-            return { ok: false, mensaje: "Edad inválida" };
-        }
-
-        // Validar promedio
-        if (est.promedio < 0 || est.promedio > 10) {
-            return { ok: false, mensaje: "Promedio inválido" };
-        }
-
-        this.estudiantes.push(est);
-        return { ok: true, mensaje: "Estudiante agregado", data: est };
+  agregar(est: Estudiante): IResultado<Estudiante> {
+    for (let e of this.estudiantes) {
+      if (e.id === est.id) {
+        return { ok: false, mensaje: "ID repetido" };
+      }
     }
 
-    listar(): Estudiante[] {
-        return this.estudiantes;
+    if (est.edad < 15 || est.edad > 80) {
+      return { ok: false, mensaje: "Edad inválida" };
     }
 
-    buscarPorId(id: number): IResultado<Estudiante> {
-        for (let e of this.estudiantes) {
-            if (e.id === id) {
-                return { ok: true, mensaje: "Encontrado", data: e };
-            }
-        }
-        return { ok: false, mensaje: "Estudiante no encontrado" };
+    if (est.promedio < 0 || est.promedio > 10) {
+      return { ok: false, mensaje: "Promedio inválido" };
     }
 
-    actualizarPromedio(id: number, nuevoPromedio: number): IResultado<Estudiante> {
-        if (nuevoPromedio < 0 || nuevoPromedio > 10) {
-            return { ok: false, mensaje: "Promedio inválido" };
-        }
+    this.estudiantes.push(est);
+    return { ok: true, mensaje: "Estudiante agregado", data: est };
+  }
 
-        for (let e of this.estudiantes) {
-            if (e.id === id) {
-                e.promedio = nuevoPromedio;
-                return { ok: true, mensaje: "Promedio actualizado", data: e };
-            }
-        }
-        return { ok: false, mensaje: "Estudiante no encontrado" };
+  listar(): Estudiante[] {
+    return this.estudiantes;
+  }
+
+  buscarPorId(id: number): IResultado<Estudiante> {
+    for (let e of this.estudiantes) {
+      if (e.id === id) {
+        return { ok: true, mensaje: "Estudiante encontrado", data: e };
+      }
+    }
+    return { ok: false, mensaje: "Estudiante no encontrado" };
+  }
+
+  actualizarPromedio(id: number, nuevoPromedio: number): IResultado<Estudiante> {
+    if (nuevoPromedio < 0 || nuevoPromedio > 10) {
+      return { ok: false, mensaje: "Promedio inválido" };
     }
 
-    cambiarEstado(id: number, activo: boolean): IResultado<Estudiante> {
-        for (let e of this.estudiantes) {
-            if (e.id === id) {
-                e.activo = activo;
-                return { ok: true, mensaje: "Estado actualizado", data: e };
-            }
-        }
-        return { ok: false, mensaje: "Estudiante no encontrado" };
+    for (let e of this.estudiantes) {
+      if (e.id === id) {
+        e.promedio = nuevoPromedio;
+        return { ok: true, mensaje: "Promedio actualizado", data: e };
+      }
     }
+    return { ok: false, mensaje: "Estudiante no encontrado" };
+  }
 
-    listarActivos(): Estudiante[] {
-        let activos: Estudiante[] = [];
-        for (let e of this.estudiantes) {
-            if (e.activo) {
-                activos.push(e);
-            }
-        }
-        return activos;
+  cambiarEstado(id: number, activo: boolean): IResultado<Estudiante> {
+    for (let e of this.estudiantes) {
+      if (e.id === id) {
+        e.activo = activo;
+        return { ok: true, mensaje: "Estado actualizado", data: e };
+      }
     }
+    return { ok: false, mensaje: "Estudiante no encontrado" };
+  }
 
-    promedioGeneral(): number {
-        let suma = 0;
-
-        for (let e of this.estudiantes) {
-            suma += e.promedio;
-        }
-
-        return this.estudiantes.length === 0 ? 0 : suma / this.estudiantes.length;
+  listarActivos(): Estudiante[] {
+    let activos: Estudiante[] = [];
+    for (let e of this.estudiantes) {
+      if (e.activo) {
+        activos.push(e);
+      }
     }
+    return activos;
+  }
+
+  promedioGeneral(): number {
+    if (this.estudiantes.length === 0) return 0;
+
+    let suma = 0;
+    for (let e of this.estudiantes) {
+      suma += e.promedio;
+    }
+    return suma / this.estudiantes.length;
+  }
+}
+
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+function preguntar(texto: string): Promise<string> {
+  return new Promise((resolve) => rl.question(texto, resolve));
 }
 
 function mostrarMenu(): void {
-    console.log("SISTEMA DE ESTUDIANTES");
-    console.log("1. Agregar estudiantes");
-    console.log("2. Listar estudiantes");
-    console.log("3. Buscar estudiante");
-    console.log("4. Actualizar promedio");
-    console.log("5. Cambiar estado");
-    console.log("6. Listar activos");
-    console.log("7. Promedio general\n");
+  console.log(`
+coloca lo q quieres buscar manin
+1. Agregar estudiante
+2. Listar estudiantes
+3. Buscar por ID
+4. Actualizar promedio
+5. Cambiar estado
+6. Listar activos
+7. Promedio general
+0. Salir
+
+`);
 }
 
-function ejecutarDemo(sistema: SistemaEstudiantes): void {
+async function ejecutarDemo(sistema: SistemaEstudiantes): Promise<void> {
+  let opcion = "";
 
-    console.log(" DEMO DEL SISTEMA -");
+  while (opcion !== "0") {
+    mostrarMenu();
+    opcion = await preguntar("Seleccione una opción: ");
 
-    // Agregar 3 estudiantes
-    sistema.agregar(new Estudiante(1, "Ana", 20, "Sistemas", true, 8.5));
-    sistema.agregar(new Estudiante(2, "Luis", 22, "Administración", true, 7.2));
-    sistema.agregar(new Estudiante(3, "Carlos", 19, "Contabilidad", true, 9.0));
+    switch (opcion) {
+      case "1": {
+        const id = Number(await preguntar("ID: "));
+        const nombre = await preguntar("Nombre: ");
+        const edad = Number(await preguntar("Edad: "));
+        const carrera = await preguntar("Carrera: ");
+        const promedio = Number(await preguntar("Promedio: "));
 
-    // Listar todos
-    console.log("Lista de estudiantes:");
-    console.log(sistema.listar());
+        const est = new Estudiante(id, nombre, edad, carrera, true, promedio);
+        console.log(sistema.agregar(est).mensaje);
+        break;
+      }
 
-    // Buscar por ID
-    console.log(" Buscar estudiante ID 2:");
-    console.log(sistema.buscarPorId(2));
+      case "2": {
+        const lista = sistema.listar();
+        for (let e of lista) {
+          e.mostrar();
+        }
+        break;
+      }
 
-    // Actualizar promedio
-    console.log(" Actualizar promedio de ID 1:");
-    console.log(sistema.actualizarPromedio(1, 9.5));
+      case "3": {
+        const id = Number(await preguntar("ID a buscar: "));
+        const res = sistema.buscarPorId(id);
+        if (res.ok && res.data) res.data.mostrar();
+        else console.log(res.mensaje);
+        break;
+      }
 
-    // Cambiar estado
-    console.log(" Cambiar estado de ID 3 a inactivo:");
-    console.log(sistema.cambiarEstado(3, false));
+      case "4": {
+        const id = Number(await preguntar("ID: "));
+        const prom = Number(await preguntar("Nuevo promedio: "));
+        console.log(sistema.actualizarPromedio(id, prom).mensaje);
+        break;
+      }
 
-    // Listar activos
-    console.log("Estudiantes activos:");
-    console.log(sistema.listarActivos());
+      case "5": {
+        const id = Number(await preguntar("ID: "));
+        const est = await preguntar("¿Activo? (s/n): ");
+        console.log(
+          sistema.cambiarEstado(id, est.toLowerCase() === "s").mensaje
+        );
+        break;
+      }
 
-    // Promedio general
-    console.log(" Promedio general del curso:");
-    console.log(sistema.promedioGeneral().toFixed(2));
+      case "6": {
+        const activos = sistema.listarActivos();
+        for (let e of activos) {
+          e.mostrar();
+        }
+        break;
+      }
+
+      case "7": {
+        console.log(
+          "Promedio general:",
+          sistema.promedioGeneral().toFixed(2)
+        );
+        break;
+      }
+
+      case "0":
+        console.log("Saliendo del sistema...");
+        break;
+
+      default:
+        console.log("Opción inválida");
+    }
+  }
+
+  rl.close();
 }
 
-mostrarMenu();
 
 const sistema = new SistemaEstudiantes();
 ejecutarDemo(sistema);
